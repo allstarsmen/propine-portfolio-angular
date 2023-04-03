@@ -1,6 +1,11 @@
 # PropinePortfolioAngular
+Exact same as Propine Portfolio project but built in Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.4.
+## Built with
+- Node.js version 18.15.0
+- NPM version 9.5.0
+- Angular version 15
+- Angular Material UI version 15
 
 ## Development server
 
