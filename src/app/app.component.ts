@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { AppService } from './services/app.service';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +23,11 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    this.appService.getBalances().subscribe(data => {
+    this.getData()
+  }
+
+  private getData(date: string = '') {
+    this.appService.getBalances(date).subscribe(data => {
       this.dataSource = new MatTableDataSource(data)
     })
   }
@@ -29,5 +35,9 @@ export class AppComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  applyDateFilter(event: MatDatepickerInputEvent<any>) {
+    this.getData(moment(event.value).format('YYYY-MM-DD'))
   }
 }

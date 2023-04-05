@@ -1,12 +1,11 @@
 <h1>My Portfolio</h1>
 <mat-form-field class="example-full-width">
-  <mat-label>Favorite food</mat-label>
-  <input matInput placeholder="Ex. Pizza" value="Sushi" #input>
+  <mat-label>Filter by name</mat-label>
+  <input matInput placeholder="Ex. Pizza" (keyup)="applyFilter($event)" #input>
 </mat-form-field>
 <mat-form-field appearance="fill">
   <mat-label>Choose a date</mat-label>
-  <input matInput [matDatepicker]="picker">
-  <mat-hint>MM/DD/YYYY</mat-hint>
+  <input matInput [matDatepicker]="picker" (dateChange)="applyDateFilter($event)">
   <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
   <mat-datepicker #picker></mat-datepicker>
 </mat-form-field>
@@ -48,6 +47,6 @@
 
   <!-- Row shown when there is no matching data. -->
   <tr class="mat-row" *matNoDataRow>
-    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    <td class="mat-cell" colspan="5">No data matching the filter "{{input.value}}"</td>
   </tr>
 </table>
